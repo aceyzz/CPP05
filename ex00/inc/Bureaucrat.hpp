@@ -1,0 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cedmulle <cedmulle@student.42lsaunne.ch>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/01 18:08:47 by cedmulle          #+#    #+#             */
+/*   Updated: 2024/03/01 18:08:47 by cedmulle         ###   ########.ch       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
+# include <string>
+# include <iostream>
+# include "colors.hpp"
+# define MAX_GRADE 1
+# define MIN_GRADE 150
+
+class	Bureaucrat
+{
+	public:
+		Bureaucrat();
+		Bureaucrat(const std::string &name, int grade);
+		Bureaucrat(const Bureaucrat &src);
+		Bureaucrat& operator=(const Bureaucrat &src);
+		~Bureaucrat();
+
+		const std::string	&getName() const;
+		int 				getGrade() const;
+		void	incrementGrade();
+		void	decrementGrade();
+
+		class	GradeTooHighException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+		class	GradeTooLowException : public std::exception
+		{
+			public:
+				virtual const char* what() const throw();
+		};
+
+	private:
+		const std::string	_name;
+		int					_grade;
+};
+
+std::ostream&	operator<<(std::ostream &os, const Bureaucrat &src);
+
+#endif
