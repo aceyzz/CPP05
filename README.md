@@ -119,3 +119,38 @@ Chaque formulaire prend en paramètre de son constructeur la cible du formulaire
 
 #### Tests :
 Des scénarios de test démontrent la création et l'exécution de chaque type de formulaire, illustrant la flexibilité et l'extensibilité du système de formulaires grâce à l'héritage et au polymorphisme. Ces tests mettent en évidence les interactions entre les bureaucrates et les divers formulaires, soulignant la complexité et la robustesse de la gestion des formulaires dans le cadre bureaucratique.
+
+<br>
+
+---
+
+<br>
+
+
+## Exercice 03 - "At least this beats coffee-making"
+
+#### Objectif :
+Dans cet exercice, l'objectif est de mettre en œuvre la classe `Intern`, qui a la capacité unique de créer des formulaires. Les stagiaires n'ont pas de nom, de grade ou de caractéristiques uniques ; leur seule responsabilité est de faire leur travail, c'est-à-dire de générer des formulaires.
+
+#### Fonctionnement de l'Intern :
+- La fonction principale de l'`Intern` est `makeForm()`, qui prend deux chaînes de caractères : le nom du formulaire et sa cible. Elle renvoie un pointeur sur un objet `Form` dont le nom est celui passé en paramètre et dont la cible est initialisée au second paramètre.
+- Si le nom du formulaire donné n'existe pas, l'intern doit afficher un message d'erreur explicite.
+
+### Mon Implémentation :
+
+[Lien ici](https://github.com/aceyzz/CPP05/tree/main/ex03)
+
+#### Classe Intern :
+- **Méthode makeForm()** : Cette méthode crée dynamiquement une instance de `Form` basée sur le nom du formulaire demandé. Elle utilise une approche flexible pour déterminer quel type de formulaire créer, évitant ainsi une cascade de `if/else` ou un `switch` peu élégant.
+- **Gestion des Exceptions** : Une exception personnalisée `NoValidFormException` est lancée si le nom du formulaire fourni ne correspond à aucun formulaire connu de l'intern. Cela garantit que seuls des formulaires valides peuvent être créés.
+
+#### Tests :
+Le code de test démontre la création d'un `RobotomyRequestForm` ciblant "`Bender`" par l'intern, illustrant l'efficacité et la simplicité de la méthode `makeForm()` pour générer divers types de formulaires.
+
+Cet exercice illustre le principe de délégation des tâches à un intern pour la création de formulaires, soulignant l'importance de la modularité et de la gestion des exceptions dans la conception logicielle. Les tests effectués démontrent la polyvalence de l'intern dans la création de formulaires spécifiques à la demande, tout en assurant une gestion robuste des cas d'erreur.
+
+<br>
+
+---
+
+<br>
