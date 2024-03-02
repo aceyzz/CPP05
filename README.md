@@ -2,7 +2,7 @@
 
 ---
 
-### Sujet : Exercice 00 - "Mommy, when I grow up, I want to be a bureaucrat!"
+## Exercice 00 - "Mommy, when I grow up, I want to be a bureaucrat!"
 
 #### Objectif :
 L'objectif de cet exercice est de concevoir une classe `Bureaucrat` qui incarne le concept de bureaucratie avec des règles strictes concernant le grade des bureaucrates. Les bureaucrates ont un grade numérique qui détermine leur rang dans la hiérarchie bureaucratique, avec 1 étant le grade le plus élevé et 150 le plus bas.
@@ -47,7 +47,9 @@ Des instances de `Bureaucrat` sont créées avec différents grades pour démont
 
 ---
 
-### Sujet : Exercice 01 - "Form up, maggots!"
+<br>
+
+## Exercice 01 - "Form up, maggots!"
 
 #### Objectif :
 Après l'introduction des bureaucrates, cet exercice propose de leur attribuer des tâches à travers la gestion de formulaires à remplir. La classe `Form` représente ces formulaires et contient les éléments suivants :
@@ -86,3 +88,34 @@ Des scénarios de test sont implémentés pour démontrer la création de formul
 
 ---
 
+<br>
+
+## Exercice 02 - "No, you need form 28B, not 28C..."
+
+#### Objectif :
+L'objectif est d'introduire des formulaires concrets qui effectuent des actions spécifiques, en transformant la classe de base `Form` en une classe abstraite renommée `AForm`. Cette transformation implique que tous les attributs restent privés dans la classe de base.
+
+#### Formulaires Concrets :
+- **ShrubberyCreationForm** : Crée un fichier `<target>_shrubbery` et y écrit des arbres en ASCII. Grades requis : signature 145, exécution 137.
+- **RobotomyRequestForm** : Produit des bruits de perçage et annonce la robotomisation réussie de `<target>` 50% du temps. Sinon, informe de l'échec. Grades requis : signature 72, exécution 45.
+- **PresidentialPardonForm** : Annonce que `<target>` a été gracié par Zaphod Beeblebrox. Grades requis : signature 25, exécution 5.
+
+Chaque formulaire prend en paramètre de son constructeur la cible du formulaire (par exemple, "home" pour planter un arbuste à domicile).
+
+#### Exécution des Formulaires :
+- Une fonction membre `execute(Bureaucrat const &executor) const` est ajoutée à la classe de base pour exécuter l'action spécifique du formulaire. Cette fonction vérifie si le formulaire est signé et si le grade du bureaucrate tentant d'exécuter le formulaire est suffisamment élevé, sinon elle lance une exception appropriée.
+
+#### Classe Bureaucrat :
+- Ajout de la fonction membre `executeForm(AForm const &form)` qui tente d'exécuter le formulaire. Si l'exécution est réussie, elle affiche un message de confirmation; sinon, elle affiche un message d'erreur explicite.
+
+### Mon Implémentation :
+
+[Lien ici](https://github.com/aceyzz/CPP05/tree/main/ex02)
+
+#### Modifications et Ajouts :
+- **Classe AForm** : Renommage de `Form` en `AForm` pour indiquer son caractère abstrait, avec l'ajout de la fonction virtuelle pure `execute` pour exécuter l'action du formulaire.
+- **Classes de Formulaires Spécifiques** : Implémentation des classes `ShrubberyCreationForm`, `RobotomyRequestForm`, et `PresidentialPardonForm` avec leurs comportements d'exécution uniques.
+- **Gestion des Exceptions** : Ajout de gestion des exceptions pour garantir que les formulaires ne soient exécutés que si les conditions requises sont remplies (formulaire signé, grade suffisant).
+
+#### Tests :
+Des scénarios de test démontrent la création et l'exécution de chaque type de formulaire, illustrant la flexibilité et l'extensibilité du système de formulaires grâce à l'héritage et au polymorphisme. Ces tests mettent en évidence les interactions entre les bureaucrates et les divers formulaires, soulignant la complexité et la robustesse de la gestion des formulaires dans le cadre bureaucratique.
