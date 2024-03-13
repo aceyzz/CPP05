@@ -4,6 +4,9 @@
 
 ## Exercice 00 - "Mommy, when I grow up, I want to be a bureaucrat!"
 
+<details>
+  <summary>Afficher/Masquer</summary>
+
 #### Objectif :
 L'objectif de cet exercice est de concevoir une classe `Bureaucrat` qui incarne le concept de bureaucratie avec des règles strictes concernant le grade des bureaucrates. Les bureaucrates ont un grade numérique qui détermine leur rang dans la hiérarchie bureaucratique, avec 1 étant le grade le plus élevé et 150 le plus bas.
 
@@ -43,6 +46,8 @@ Des blocs `try` et `catch` sont utilisés pour capturer et gérer les exceptions
 #### Test :
 Des instances de `Bureaucrat` sont créées avec différents grades pour démontrer la gestion des exceptions et l'affichage des informations du bureaucrate. Les tests mettent en évidence la robustesse de la classe face aux opérations invalides.
 
+</details>
+
 <br>
 
 ---
@@ -50,6 +55,9 @@ Des instances de `Bureaucrat` sont créées avec différents grades pour démont
 <br>
 
 ## Exercice 01 - "Form up, maggots!"
+
+<details>
+  <summary>Afficher/Masquer</summary>
 
 #### Objectif :
 Après l'introduction des bureaucrates, cet exercice propose de leur attribuer des tâches à travers la gestion de formulaires à remplir. La classe `Form` représente ces formulaires et contient les éléments suivants :
@@ -84,6 +92,8 @@ Après l'introduction des bureaucrates, cet exercice propose de leur attribuer d
 #### Test :
 Des scénarios de test sont implémentés pour démontrer la création de formulaires, la gestion des exceptions liées aux grades, et l'interaction entre bureaucrates et formulaires pour la signature. Ces tests mettent en lumière le fonctionnement intégré des classes `Bureaucrat` et `Form` dans le contexte de la gestion des documents administratifs.
 
+</details>
+
 <br>
 
 ---
@@ -91,6 +101,9 @@ Des scénarios de test sont implémentés pour démontrer la création de formul
 <br>
 
 ## Exercice 02 - "No, you need form 28B, not 28C..."
+
+<details>
+  <summary>Afficher/Masquer</summary>
 
 #### Objectif :
 L'objectif est d'introduire des formulaires concrets qui effectuent des actions spécifiques, en transformant la classe de base `Form` en une classe abstraite renommée `AForm`. Cette transformation implique que tous les attributs restent privés dans la classe de base.
@@ -120,6 +133,8 @@ Chaque formulaire prend en paramètre de son constructeur la cible du formulaire
 #### Tests :
 Des scénarios de test démontrent la création et l'exécution de chaque type de formulaire, illustrant la flexibilité et l'extensibilité du système de formulaires grâce à l'héritage et au polymorphisme. Ces tests mettent en évidence les interactions entre les bureaucrates et les divers formulaires, soulignant la complexité et la robustesse de la gestion des formulaires dans le cadre bureaucratique.
 
+</details>
+
 <br>
 
 ---
@@ -128,6 +143,9 @@ Des scénarios de test démontrent la création et l'exécution de chaque type d
 
 
 ## Exercice 03 - "At least this beats coffee-making"
+
+<details>
+  <summary>Afficher/Masquer</summary>
 
 #### Objectif :
 Dans cet exercice, l'objectif est de mettre en œuvre la classe `Intern`, qui a la capacité unique de créer des formulaires. Les stagiaires n'ont pas de nom, de grade ou de caractéristiques uniques ; leur seule responsabilité est de faire leur travail, c'est-à-dire de générer des formulaires.
@@ -148,6 +166,8 @@ Dans cet exercice, l'objectif est de mettre en œuvre la classe `Intern`, qui a 
 Le code de test démontre la création d'un `RobotomyRequestForm` ciblant "`Bender`" par l'intern, illustrant l'efficacité et la simplicité de la méthode `makeForm()` pour générer divers types de formulaires.
 
 Cet exercice illustre le principe de délégation des tâches à un intern pour la création de formulaires, soulignant l'importance de la modularité et de la gestion des exceptions dans la conception logicielle. Les tests effectués démontrent la polyvalence de l'intern dans la création de formulaires spécifiques à la demande, tout en assurant une gestion robuste des cas d'erreur.
+
+</details>
 
 <br>
 
