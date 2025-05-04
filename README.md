@@ -1,6 +1,13 @@
-<img src="utils/1.png" width= 100%>
+<img src="git_utils/banner.png" width= 100%>
+
+<br>
 
 ---
+
+<br>
+
+<details>
+<summary>FRENCH VERSION</summary>
 
 ## Exercice 00 - "Mommy, when I grow up, I want to be a bureaucrat!"
 
@@ -171,6 +178,184 @@ Cet exercice illustre le principe de délégation des tâches à un intern pour 
 
 <br>
 
+</details>
+
+<br>
+
 ---
 
 <br>
+
+<details>
+<summary>ENGLISH VERSION</summary>
+
+## Exercise 00 - "Mommy, when I grow up, I want to be a bureaucrat!"
+
+<details>
+	<summary>Show/Hide</summary>
+
+#### Objective:
+The goal of this exercise is to design a `Bureaucrat` class that embodies the concept of bureaucracy with strict rules regarding bureaucrats' grades. Bureaucrats have a numerical grade that determines their rank in the bureaucratic hierarchy, with 1 being the highest grade and 150 the lowest.
+
+#### Constraints:
+- **Constant Name**: Each bureaucrat has a name that does not change.
+- **Grade**: The grade is between 1 and 150. Any attempt to create a bureaucrat with a grade outside this range must throw an exception.
+- **Exception Handling**: Two types of exceptions must be handled - `GradeTooHighException` and `GradeTooLowException`, for cases where the grade is too high or too low, respectively.
+- **Grade Manipulation**: It must be possible to increment or decrement a bureaucrat's grade, with exception handling if the proposed changes result in an invalid grade.
+- **Display**: Implement an overload of the insertion operator (<<) to display the details of a bureaucrat in the format: `<name>, bureaucrat grade <grade>`.
+
+### My Implementation:
+
+[Link here](https://github.com/aceyzz/CPP05/tree/main/ex00)
+
+#### Bureaucrat Class:
+- **Attributes**: 
+	- `const std::string _name`: The bureaucrat's name, constant and initialized at creation.
+	- `int _grade`: The bureaucrat's grade, must be between 1 and 150.
+
+- **Constructors and Destructor**: 
+	- A default constructor, a parameterized constructor to initialize the bureaucrat with a specific name and grade, and a destructor.
+	- The parameterized constructor checks the validity of the grade and throws exceptions if necessary.
+
+- **Exceptions**: 
+	- `GradeTooHighException` and `GradeTooLowException` are defined as inner classes, inheriting from `std::exception`, and implementing the `what()` method to provide an error message.
+
+- **Features**:
+	- `incrementGrade()` and `decrementGrade()` to modify the bureaucrat's grade, with exception handling if the resulting grade is invalid.
+	- `getName()` and `getGrade()` as accessors to retrieve the bureaucrat's name and grade.
+
+- **Overload of the << Operator**:
+	- Allows displaying the bureaucrat's information using `std::cout`.
+
+#### Exception Handling:
+`try` and `catch` blocks are used to capture and handle exceptions when manipulating bureaucrats' grades. This includes attempts to increase or decrease the grade beyond the allowed limits.
+
+#### Test:
+Instances of `Bureaucrat` are created with different grades to demonstrate exception handling and the display of bureaucrat information. The tests highlight the robustness of the class against invalid operations.
+
+</details>
+
+<br>
+
+---
+
+<br>
+
+## Exercise 01 - "Form up, maggots!"
+
+<details>
+	<summary>Show/Hide</summary>
+
+#### Objective:
+After introducing bureaucrats, this exercise assigns them tasks through the management of forms to be filled out. The `Form` class represents these forms and includes the following elements:
+- **Constant Name**: An immutable name for the form.
+- **Signature Status**: A boolean indicating whether the form is signed or not (unsigned by default).
+- **Grade Required for Signing**: A specific grade required to sign the form.
+- **Grade Required for Execution**: A specific grade required to execute the form.
+
+#### Constraints:
+- Form grades follow the same rules as bureaucrats, with exception handling for `Form::GradeTooHighException` and `Form::GradeTooLowException` if a grade is out of bounds.
+- The `Form` class must provide accessors for all its attributes and an overload of the insertion operator (<<) to display the form's information.
+- The member function `beSigned(Bureaucrat)` allows changing the form's status to "signed" if the bureaucrat's grade is sufficient.
+
+#### Bureaucrat Class:
+- Modified to include the member function `signForm(Form&)` which attempts to sign a form. If the form is successfully signed, a confirmation message is displayed; otherwise, a reason for the failure is given.
+
+### My Implementation:
+
+[Link here](https://github.com/aceyzz/CPP05/tree/main/ex01)
+
+#### Form Class:
+- **Constructors and Destructor**: 
+	- A default constructor, a parameterized constructor to initialize the form with specific grades for signing and execution, and a destructor.
+- **Exceptions**: 
+	- Custom exceptions `GradeTooHighException` and `GradeTooLowException` to handle invalid grades when creating forms.
+- **Features**:
+	- `beSigned(const Bureaucrat&)` to attempt to sign the form with a given bureaucrat, with exception handling if the bureaucrat's grade is insufficient.
+
+#### Modifications to the Bureaucrat Class:
+- Added the `signForm(Form&)` function that allows the bureaucrat to sign a form, displaying a message depending on whether the signature is successful or not.
+
+#### Test:
+Test scenarios are implemented to demonstrate the creation of forms, exception handling related to grades, and the interaction between bureaucrats and forms for signing. These tests highlight the integrated functionality of the `Bureaucrat` and `Form` classes in the context of administrative document management.
+
+</details>
+
+<br>
+
+---
+
+<br>
+
+## Exercise 02 - "No, you need form 28B, not 28C..."
+
+<details>
+	<summary>Show/Hide</summary>
+
+#### Objective:
+The goal is to introduce concrete forms that perform specific actions by transforming the base `Form` class into an abstract class renamed `AForm`. This transformation ensures that all attributes remain private in the base class.
+
+#### Concrete Forms:
+- **ShrubberyCreationForm**: Creates a `<target>_shrubbery` file and writes ASCII trees in it. Required grades: signing 145, execution 137.
+- **RobotomyRequestForm**: Produces drilling noises and announces the successful robotomization of `<target>` 50% of the time. Otherwise, it informs of the failure. Required grades: signing 72, execution 45.
+- **PresidentialPardonForm**: Announces that `<target>` has been pardoned by Zaphod Beeblebrox. Required grades: signing 25, execution 5.
+
+Each form takes the target of the form as a parameter in its constructor (e.g., "home" to plant a shrub at home).
+
+#### Form Execution:
+- A member function `execute(Bureaucrat const &executor) const` is added to the base class to execute the form's specific action. This function checks if the form is signed and if the grade of the bureaucrat attempting to execute the form is high enough; otherwise, it throws an appropriate exception.
+
+#### Bureaucrat Class:
+- Added the member function `executeForm(AForm const &form)` which attempts to execute the form. If the execution is successful, it displays a confirmation message; otherwise, it displays an explicit error message.
+
+### My Implementation:
+
+[Link here](https://github.com/aceyzz/CPP05/tree/main/ex02)
+
+#### Modifications and Additions:
+- **AForm Class**: Renamed `Form` to `AForm` to indicate its abstract nature, with the addition of the pure virtual function `execute` to perform the form's action.
+- **Specific Form Classes**: Implementation of the `ShrubberyCreationForm`, `RobotomyRequestForm`, and `PresidentialPardonForm` classes with their unique execution behaviors.
+- **Exception Handling**: Added exception handling to ensure that forms are only executed if the required conditions are met (form signed, sufficient grade).
+
+#### Tests:
+Test scenarios demonstrate the creation and execution of each type of form, illustrating the flexibility and extensibility of the form system through inheritance and polymorphism. These tests highlight the interactions between bureaucrats and various forms, emphasizing the complexity and robustness of form management in a bureaucratic framework.
+
+</details>
+
+<br>
+
+---
+
+<br>
+
+
+## Exercise 03 - "At least this beats coffee-making"
+
+<details>
+	<summary>Show/Hide</summary>
+
+#### Objective:
+In this exercise, the goal is to implement the `Intern` class, which has the unique ability to create forms. Interns have no name, grade, or unique characteristics; their sole responsibility is to do their job, which is to generate forms.
+
+#### Intern Functionality:
+- The main function of the `Intern` is `makeForm()`, which takes two strings: the name of the form and its target. It returns a pointer to a `Form` object whose name matches the one provided and whose target is initialized to the second parameter.
+- If the given form name does not exist, the intern must display an explicit error message.
+
+### My Implementation:
+
+[Link here](https://github.com/aceyzz/CPP05/tree/main/ex03)
+
+#### Intern Class:
+- **makeForm() Method**: This method dynamically creates an instance of `Form` based on the requested form name. It uses a flexible approach to determine which type of form to create, avoiding an inelegant cascade of `if/else` or a `switch`.
+- **Exception Handling**: A custom exception `NoValidFormException` is thrown if the provided form name does not match any form known to the intern. This ensures that only valid forms can be created.
+
+#### Tests:
+The test code demonstrates the creation of a `RobotomyRequestForm` targeting "`Bender`" by the intern, illustrating the efficiency and simplicity of the `makeForm()` method for generating various types of forms.
+
+This exercise illustrates the principle of delegating tasks to an intern for form creation, emphasizing the importance of modularity and exception handling in software design. The tests performed demonstrate the intern's versatility in creating specific forms on demand while ensuring robust error handling.
+
+</details>
+
+<br>
+
+</details>
